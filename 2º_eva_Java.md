@@ -1,6 +1,6 @@
 # Repaso para el examen de la segunda evaluación de Java
 
-## Herencia
+# Herencia
 Se crea una clase padre o super clase:
 ``` java
 class Alumno {
@@ -160,10 +160,61 @@ public Object clone() throws CloneNotSupportedException{
 }
 ```
 
+# Polimorfismo
+Consiste en guardar en variables o ArrayLists de tipo padre objetos de tipo hijo.
 
+Ejemplo: 
+```
+Alumno alumno1 = new AlumnoESO("796584122N", "ana");
 
+o
 
+ArrayList<Alumno> instituto = new ArrayList<>();
 
+instituto.add(new AlumnoESO("796584122N", "ana");
+instituto.add(new AlumnoESO("896524123N", "pedro");
+instituto.add(new AlumnoCiclos("896524123N", "pedro");
+```
+> El problema es que si queremos mostrar o usar el contenido de las variables o ArrayLists polimorficos necesitamos hacer un casteo de tipo Padre a tipo hijo
+
+Ejemplo para imprimir el contenido de la variable alumno1:
+```java
+System.out.println ( (AlumnoESO)alumno1 );
+```
+> Esto se aplica para cualquier otra cosa como por ejemplo utilizar metodos en los objetos que contiene el ArrayList, modificar el objeto que contiene la variable, nunca vamos a poder acceder al objeto y usarlo si no casteamos primero
+
+> Cuando no sabemos de que tipo es el objeto podemos utilizar una cadena de if's con todas las posiblidades
+
+Ejemplo para utlizar el metdo empresa de AlumnoCiclo solo si el objeto es de ese tipo:
+```
+if (alumno1 instanceof AlumnoCiclos)
+  ((AlumnoCiclos)alumno1).Empresa();
+if (alumno1 instanceof AlumnoESO)
+  System.out.println("Este alumno no tiene el metodo empresa");
+```
+> Para los ArrayList polimorficos esto se utliza dentro de un bucle for o for each, asi comprueba todos los objetos del ArrayList uno por uno y si es AlumnoClicos ejecuta el metodo empresa() en el.
+
+Nota: Recordatorio for each
+```java
+for (Alumno x: instituto){
+  if (x instanceof AlumnoCiclos)
+  ((AlumnoCiclos) x).Empresa();
+}
+```
+## Sobre carga de métodos (overload)
+Consiste en crear varios metodos en la misma clase con el mismo nombre y distinto codigo y según que parametros se les pase utilizas un metodo o otro.
+
+Ejemplo:
+```java
+public void sumar (int a, int b){
+  int suma = a + b;
+  System.out.println("la suma es: "+suma);
+}
+
+public void sumar (double x, double y){
+  double suma = x + y;
+  System.out.println("la suma es: "+suma);
+}
 
 
 
