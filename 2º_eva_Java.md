@@ -2,7 +2,7 @@
 
 ## Herencia
 Se crea una clase padre o super clase:
-```java
+``` java
 class Alumno {
   public String nombre;
   public String DNI;
@@ -20,7 +20,7 @@ class Alumno {
 }
 ```
 Ahora se crean las subclases o clases hijas:
-```java
+``` java
 class Alumnos extends Alumno { // utilizamos la notacion extends para indicar que esta hereda de una superclase
   public int telefono;
   
@@ -81,7 +81,7 @@ a2 instanceof AlumnoESO -- se evalua como false por que solo es un hermano y no 
 son métodos de acceso público y se usan para dar acceso a los atributos que definimos de acceso private.
 
 Ejemplo: 
-```
+```java
 public class Empleado {
   private int id;
   private String nombre;
@@ -116,11 +116,49 @@ AlumnoESO.toString();
 Se mostraria : ID:10 Pedro Gomez 19 añaos
 
 ## equals
+Es un caso similar al de toString(), tambien esta definido sobre la clase Object y si lo queremos usar tienes unos valores predefinidos, en la mayoria de los casos nos vale pero lo mejor es sobreescribirlo para adaptarlo a nuestras necesidades
 
+> Nos va a permitir indicarle los parametros que queremos que utlize para comparar si un objeto es igual a otro.
 
+> si probamos en una de  nuestras clases a usarlo, al no estar sobreescrito el resultado será incorrecto por lo tanto para comparar objetos debemos sobreescribir el metodo
 
+Ejemplo en el que queremos compara dos objetos segun su dni:
+```java
+@Override
+public boolean equals(Object a){
+  if (a == null) return false;
+  if (a == this) return true;
+  if (!(a instance of Alumno)) return false;
+  Alumno o = (Alumno) a; // Creamos una variable Alumno para igual al Casting del objeto pasado
+  if (o.dni.equals(this.dni)) return true; // si los dnis son iguales devolvemos true
+  return false;
+}
 
+```
+> De este modo ya podemos utilizar desde nuestro Main metodos como indexof o contains en nuestros ArrayLists para que nos diga la posiocion o si encuentra o no el objeto pasado dentro de ArrayList
 
+Ejemplo:
+```java
+Alumno b = new Alumno ("79336549N", "ana"); // creamos un objeto para comparar
+pos = instituto.indexOf(b); // usamos indeOf para buscar su posicion 
+if (pos != -1 ) System.out.println("Encontrado"); // si lo encontramos imprimimos el aviso
+```
+## hascode
+este metodo se utiliza en vez del equals en determinadas ocasiones asi que si lo necesitamos deberiamos sobreescribirlo 
+
+## clone
+Para copiar objetos pasa algo parecido como con la comparación , deberiamos sobreescribirlo para poder copiar objetos
+
+Ejemplo: 
+```java
+@Override
+public Object clone() throws CloneNotSupportedException{
+  Object clone = null;
+  try { clone = super.clone();}
+    catch (cloneNotSupportedException e) {}
+    return clone;
+}
+```
 
 
 
