@@ -291,6 +291,74 @@ int sueldoConsultor2 = t2.calcularSalarioAnual();
 ```
 
 # Interfaces
+Una interfaz es similar a una clase abstracta, es un contrato de comportamiento que adquire una clase.
+
+> Cuando una clase es hija de una interfaz adquire un conjunto de operaciones que se compromente a implementar
+
+> es una clase abstracta pura donde todos sus metodos son abstractos , no implementando ninguno de ellos y obligando a las subclases que los desarrollen.
+
+> En las interfaces solo se pueden definir metodos abstractos y constantes. variables "public static final".
+
+Tipos de metodos desde java 8 :
+- Metodos por defecto: se añade un codigo comun para todas las clases, con lo cual si no añades codigo en ese metodo en los hijo ejecutará este por defecto
+- Metodos estaticos: son metodos comunes a todas las clases que implementan la interfaz y por ello no tiene sentido que esten desarrollados en las clases hijas
+- Metodos privados: son metodos usados en la propia interfaz para ser usados por ella misma
+
+> Para que una clase implemente una interfaz se utiliza la notación implements
+
+> los metodos de las interfaces simpre son public abstrac con lo cual no hace falta indicarlo
+
+> las interfaces no pueden ser instanciadas
+
+> una clase puede heredar de varias interfaces , en este caso se escribe implements interfaz1, interfaz2, interfaz3, etc...
+
+Ejemplo de interfaz:
+```java
+
+interface Cantante {
+  String formatoCancion = "mp3";
+  void cantar();
+  default double tarifa () {return 0;}
+}
+
+class Persona implements Cantante {
+  // atributos de persona
+  @Override
+  public void cantar(){
+    System.out.println(" la la la laaa!");
+  }
+  @Override
+  public double tarifa() {return 1000d;}
+}
+
+class Canario implements Cantante {
+  // atributos de canario
+  public void cantar(){
+    System.out.println("pio pio pio");
+  }   
+ }
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
