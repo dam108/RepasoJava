@@ -215,12 +215,82 @@ public void sumar (double x, double y){
   double suma = x + y;
   System.out.println("la suma es: "+suma);
 }
+```
+# Clases Abstractas e interfaces
+## Clases Abstractas
 
+Las clases abstractas se definen de la siguiente manera:
+```java
+public abstract class Trabajador {}
+```
+> No se pueden instanciar clases abstractas, pero sigue funcionando como una superclase igual
 
+> Dentro de las clases abstractas podemos definir atributos, contructores y metodos 
 
+> tambien podemos definir metodos abstractos que no tienen codigo en la propia clase pero existe un compromiso de que las subclases definan ese metodo e inserten codigo en el.
 
+Un metodo abstracto se define de la siguiente manera, sin codigo y sin {} solo el ; al final
+``` java
+public abstract mover();
+```
+> la clase hija tiene un compromiso de definir el metodo mover();
 
+Ejemplo de codgio:
+```java
+public abstract class Trabajador {
+  public String dni;
+  public int bonus;
+  public abstract int calcularSalarioAnual();
+  
+  public Trabajador(String dni, int bonus){
+    this.dni = dni; this.bonus = bonus;
+  } 
+}
 
+hijas:
+
+class Empleado extends Trabajador {
+  public int salarioBase;
+  
+  public Empleado(String dni, int bonus, int salarioBase){
+    super(dni, bonus);
+    this.salarioBase = salarioBase;
+  } 
+  @Override
+  public int calcularSalarioAnual (){
+    return salarioBase + bonus;
+  }
+}
+
+class Consultor extends Trabajador {
+  public int horasTrabajadas;
+  public int precioHora;
+  
+  public Consultor (String dni, int bonus, int hT, int pH){
+    super(dni, bonus);
+    this.horasTrabajadas = hT;
+    this.precioHora = pH;
+  }
+  
+  @Override
+  public int calcularSalarioAnual (){
+    return this.bonus + this.precioHora  * this.5horasTrabajadas;
+  }
+}
+```
+
+> instanciamos un Empleado y un Consultor:
+``` java
+Trabajador t1 = new Empleado("7958621B", 2000, 30000);
+Trabjador t2 = new Consultor("8546325N", 3000, 500, 20);
+```
+> llamamos al metodo desde cada objeto sin tener que castear por que los metodos abstractos no necesitan este casteo:
+```java
+int sueldoEmpleado1 = t1.calcularSalarioAnual();
+int sueldoConsultor2 = t2.calcularSalarioAnual();
+```
+
+# Interfaces
 
 
 
